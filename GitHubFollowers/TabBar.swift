@@ -19,7 +19,11 @@ class TabBar: UITabBarController {
         
         self.tabBar.tintColor = .systemGreen
         
+        UINavigationBar.appearance().tintColor = .systemGreen
+        
         self.viewControllers = [searchNC, favouritesNC]
+        
+        
     }
     
     func createSearchNC() -> UINavigationController {
@@ -39,8 +43,6 @@ class TabBar: UITabBarController {
     }
     
 
-    /*
-    // MARK: - Navigation
-    */
+    // MARK: - EOF
 
 }

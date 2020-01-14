@@ -36,6 +36,9 @@ class MLTextField: UITextField {
         
         backgroundColor             = .tertiarySystemBackground
         autocorrectionType          = .no
+        keyboardType                = .default
+        returnKeyType               = .search
+        autocapitalizationType      = .none
         placeholder                 = "Enter a username"
     }
 

@@ -14,6 +14,11 @@ class SearchVC: UIViewController {
     let usernameTextField   = MLTextField()
     let callToActionButton  = MLButton(withColor: .systemGreen, withTitle: "Get Followers")
     
+//    you don't need a return if it's just one line
+    var isUsernameEntered: Bool {
+        !usernameTextField.text!.isEmpty
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,7 @@ class SearchVC: UIViewController {
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
+        createDismissKeyboardTapGesture()
         
     }
     
@@ -33,13 +39,31 @@ class SearchVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
+    
+    func createDismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.usernameTextField.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func pushFollowerListVC() {
+        guard isUsernameEntered else {
+            print("No username")
+            return
+            
+        }
+        let followerListVC          = FollowerListVC()
+        followerListVC.username     = usernameTextField.text
+        followerListVC.title        = usernameTextField.text
+        
+        navigationController?.pushViewController(followerListVC, animated: true)
+    }
 
     
     private func configureLogoImageView() {
         view.addSubview(logoImageView)
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = UIImage(named: "gh-logo")!
         
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -50,27 +74,42 @@ class SearchVC: UIViewController {
     
     private func configureTextField() {
         view.addSubview(usernameTextField)
-        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
+        usernameTextField.delegate = self
         
+        
+        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             usernameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             usernameTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
     }
     
     private func configureCallToActionButton () {
         view.addSubview(callToActionButton)
-        callToActionButton.translatesAutoresizingMaskIntoConstraints = false
         
+        callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
+        
+        callToActionButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
+        
     }
 
+}
+
+extension SearchVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameTextField.endEditing(true)
+        pushFollowerListVC()
+        return true
+    }
 }
 
