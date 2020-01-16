@@ -24,7 +24,6 @@ class SearchVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        print(view.bounds.size)
         
         configureLogoImageView()
         configureTextField()

@@ -24,7 +24,7 @@
 		C8EA45D623D0B6DF00EF46B4 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA45D523D0B6DF00EF46B4 /* Follower.swift */; };
 		C8EA45D823D0B8D100EF46B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA45D723D0B8D100EF46B4 /* User.swift */; };
 		C8EA45DB23D0C80C00EF46B4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA45DA23D0C80C00EF46B4 /* NetworkManager.swift */; };
-		C8EA45DE23D0DD2200EF46B4 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA45DD23D0DD2200EF46B4 /* ErrorMessage.swift */; };
+		C8EA45DE23D0DD2200EF46B4 /* MLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EA45DD23D0DD2200EF46B4 /* MLError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,7 @@
 		C8EA45D523D0B6DF00EF46B4 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		C8EA45D723D0B8D100EF46B4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C8EA45DA23D0C80C00EF46B4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		C8EA45DD23D0DD2200EF46B4 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		C8EA45DD23D0DD2200EF46B4 /* MLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +162,7 @@
 		C8EA45DC23D0DCEA00EF46B4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C8EA45DD23D0DD2200EF46B4 /* ErrorMessage.swift */,
+				C8EA45DD23D0DD2200EF46B4 /* MLError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 				C8EA45C823CFBB8800EF46B4 /* MLBodyLabel.swift in Sources */,
 				C88C904723C2963D009F2517 /* SceneDelegate.swift in Sources */,
 				C84142E823CCFEF500A6383B /* MLTextField.swift in Sources */,
-				C8EA45DE23D0DD2200EF46B4 /* ErrorMessage.swift in Sources */,
+				C8EA45DE23D0DD2200EF46B4 /* MLError.swift in Sources */,
 				C8EA45DB23D0C80C00EF46B4 /* NetworkManager.swift in Sources */,
 				C8EA45C423CE5B3700EF46B4 /* FollowerListVC.swift in Sources */,
 				C84142E423CCE76D00A6383B /* TabBar.swift in Sources */,
