@@ -135,9 +135,9 @@
 		C8EA45D323D0794500EF46B4 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				C88C904F23C2963F009F2517 /* LaunchScreen.storyboard */,
-				C88C904623C2963D009F2517 /* SceneDelegate.swift */,
 				C88C904423C2963D009F2517 /* AppDelegate.swift */,
+				C88C904623C2963D009F2517 /* SceneDelegate.swift */,
+				C88C904F23C2963F009F2517 /* LaunchScreen.storyboard */,
 			);
 			path = Support;
 			sourceTree = "<group>";
