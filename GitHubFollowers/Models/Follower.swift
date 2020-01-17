@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Follower: Codable {
+struct Follower: Codable, Hashable {
     let login:                  String
     // in JSON we have it in snake case, and we need to convert it to camel casae so avatar_url.
     // JSONDecoder() can automatically decode it using decoder.keyDecodingStrategy = .convertFromSnakeCase
