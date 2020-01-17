@@ -10,9 +10,20 @@ import UIKit
 
 class FollowerListVC: UIViewController {
     
+    enum Section {
+        case main
+    }
+    
     var username: String!
+    var followers: [Follower] = [] {
+        didSet {
+            updateData()
+        }
+    }
+    
     var collectionView: UICollectionView!
     var numberOfColumns: Int = 3
+    var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     
 
     override func viewDidLoad() {
@@ -22,6 +33,7 @@ class FollowerListVC: UIViewController {
         configureViewController()
         getFollowers()
         configureCollectionView()
+        configureDataSource()
     }
     
     
@@ -32,8 +44,10 @@ class FollowerListVC: UIViewController {
     
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        determineNumberOfColumns()
-        configureCollectionView()
+        if previousTraitCollection?.horizontalSizeClass != self.traitCollection.horizontalSizeClass {
+            determineNumberOfColumns()
+            configureCollectionView()
+        }
     }
     
     
@@ -53,6 +67,7 @@ class FollowerListVC: UIViewController {
         default:
             numberOfColumns = 3
         }
+        print("Changing number of columns to \(numberOfColumns)")
     }
     
     
@@ -61,8 +76,7 @@ class FollowerListVC: UIViewController {
             
             switch result {
             case .success(let followers):
-                print("Number of followers: \(followers.count)")
-                print(followers)
+                self.followers = followers
                 
             case .failure(let errorMessage):
                 self.presentMLAlertOnMainThread(title: "Bad Stuff Happened 😭", message: errorMessage.rawValue, buttonTitle: "Oh no!")
@@ -75,9 +89,10 @@ class FollowerListVC: UIViewController {
         
         
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createColumnFlowLayout(numberOfColumns: numberOfColumns))
+//        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createColumnFlowLayout(numberOfColumns: 3))
         view.addSubview(collectionView)
         
-        collectionView.backgroundColor = .systemPink
+        collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
         
     }
@@ -99,6 +114,26 @@ class FollowerListVC: UIViewController {
         flowLayout.itemSize                 = CGSize(width: itemWidth, height: itemWidth + 40)
         
         return flowLayout
+    }
+    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
+            cell.set(follower: follower)
+            
+            return cell
+        })
+    }
+    
+    func updateData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(followers)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+        }
+        
+        
     }
 
 }
