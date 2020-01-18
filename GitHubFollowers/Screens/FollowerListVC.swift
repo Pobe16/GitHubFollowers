@@ -72,7 +72,8 @@ class FollowerListVC: UIViewController {
     
     
     func getFollowers() {
-        NetworkManager.shared.getFollowers(for: username, page: 1) { result in
+        NetworkManager.shared.getFollowers(for: username, page: 1) { [weak self] result in
+            guard let self = self else { return }
             
             switch result {
             case .success(let followers):
@@ -88,32 +89,14 @@ class FollowerListVC: UIViewController {
     func configureCollectionView() {
         
         
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createColumnFlowLayout(numberOfColumns: numberOfColumns))
+//        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createColumnFlowLayout(numberOfColumns: numberOfColumns))
 //        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createColumnFlowLayout(numberOfColumns: 3))
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createColumnFlowLayout(in: view, numberOfColumns: numberOfColumns))
         view.addSubview(collectionView)
         
         collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
         
-    }
-    
-    func createColumnFlowLayout(numberOfColumns: Int) -> UICollectionViewFlowLayout {
-        let width                           = view.bounds.width
-        let padding: CGFloat                = 12
-        let minimumItemSpacing: CGFloat     = 10
-        
-        let totalPadding                    = 2 * padding
-        let numberOfSpaces                  = numberOfColumns - 1
-        let totalSpacing                    = minimumItemSpacing * CGFloat(numberOfSpaces)
-        let availableWidth                  = width - totalPadding - totalSpacing
-        
-        let itemWidth                       = availableWidth / CGFloat(numberOfColumns)
-        
-        let flowLayout                      = UICollectionViewFlowLayout()
-        flowLayout.sectionInset             = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize                 = CGSize(width: itemWidth, height: itemWidth + 40)
-        
-        return flowLayout
     }
     
     func configureDataSource() {
