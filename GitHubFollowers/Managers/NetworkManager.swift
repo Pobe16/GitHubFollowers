@@ -13,13 +13,12 @@ class NetworkManager {
     private let baseURL         = "https://api.github.com/"
     let cache                   = NSCache<NSString, UIImage>()
     
-    
     let perPageResults          = 100
     
     private init() {}
     
     func getFollowers(for username: String, page: Int, completed: @escaping(Result<[Follower], MLError>) ->Void) {
-        let endpoint = baseURL + "users/\(username)/followers?per_page=\(perPageResults)"
+        let endpoint = baseURL + "users/\(username)/followers?per_page=\(perPageResults)&page=\(page)"
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidUsername))
             return
@@ -46,10 +45,6 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let followers = try decoder.decode([Follower].self, from: data)
-                //  guard followers.count > 0 else {
-                //      completed(nil, "There are no followers for \(username)")
-                //      return
-                //  }
                 completed(.success(followers))
             } catch {
                 completed(.failure(.invalidData))
