@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C83BA61A23D6593700717AB7 /* MLEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */; };
 		C84142E223CCE5E300A6383B /* FavouritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84142E123CCE5E300A6383B /* FavouritesListVC.swift */; };
 		C84142E423CCE76D00A6383B /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84142E323CCE76D00A6383B /* TabBar.swift */; };
 		C84142E623CCF85B00A6383B /* MLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84142E523CCF85B00A6383B /* MLButton.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLEmptyStateView.swift; sourceTree = "<group>"; };
 		C84142E123CCE5E300A6383B /* FavouritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListVC.swift; sourceTree = "<group>"; };
 		C84142E323CCE76D00A6383B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		C84142E523CCF85B00A6383B /* MLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLButton.swift; sourceTree = "<group>"; };
@@ -67,6 +69,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C83BA61323D6589500717AB7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C83BA61423D658A100717AB7 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				C84142E523CCF85B00A6383B /* MLButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		C83BA61523D658A800717AB7 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				C84142E723CCFEF500A6383B /* MLTextField.swift */,
+				C8EA45C523CFB9EE00EF46B4 /* MLTitleLabel.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		C83BA61623D658B100717AB7 /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				C8EA45E223D1D58500EF46B4 /* MLAvatarImageView.swift */,
+			);
+			path = ImageViews;
+			sourceTree = "<group>";
+		};
+		C83BA61723D658BA00717AB7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C8EA45C923CFBC4000EF46B4 /* MLAlertVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C83BA61823D658C200717AB7 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				C8EA45C723CFBB8800EF46B4 /* MLBodyLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
 		C88C903823C2963D009F2517 = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +156,6 @@
 			children = (
 				C84142E123CCE5E300A6383B /* FavouritesListVC.swift */,
 				C8EA45C323CE5B3700EF46B4 /* FollowerListVC.swift */,
-				C8EA45C923CFBC4000EF46B4 /* MLAlertVC.swift */,
 				C88C904823C2963D009F2517 /* SearchVC.swift */,
 			);
 			path = Screens;
@@ -114,12 +164,13 @@
 		C8EA45CF23D0789200EF46B4 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				C83BA61823D658C200717AB7 /* Labels */,
+				C83BA61723D658BA00717AB7 /* ViewControllers */,
+				C83BA61623D658B100717AB7 /* ImageViews */,
+				C83BA61523D658A800717AB7 /* TextFields */,
+				C83BA61423D658A100717AB7 /* Buttons */,
+				C83BA61323D6589500717AB7 /* Views */,
 				C8EA45DF23D1D4F000EF46B4 /* Cells */,
-				C8EA45E223D1D58500EF46B4 /* MLAvatarImageView.swift */,
-				C8EA45C723CFBB8800EF46B4 /* MLBodyLabel.swift */,
-				C84142E523CCF85B00A6383B /* MLButton.swift */,
-				C84142E723CCFEF500A6383B /* MLTextField.swift */,
-				C8EA45C523CFB9EE00EF46B4 /* MLTitleLabel.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -255,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8EA45CA23CFBC4000EF46B4 /* MLAlertVC.swift in Sources */,
+				C83BA61A23D6593700717AB7 /* MLEmptyStateView.swift in Sources */,
 				C8EA45CC23CFD63500EF46B4 /* UIViewContoller+Ext.swift in Sources */,
 				C84142E623CCF85B00A6383B /* MLButton.swift in Sources */,
 				C88C904923C2963D009F2517 /* SearchVC.swift in Sources */,
