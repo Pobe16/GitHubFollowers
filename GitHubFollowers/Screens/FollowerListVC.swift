@@ -106,8 +106,18 @@ class FollowerListVC: UIViewController {
                     return
                 }
                 
-                self.updateData(on: self.followers)
+                
                 self.page += 1
+                
+if self.filteredFollowers.isEmpty{
+    self.updateData(on: self.followers)
+} else {
+    DispatchQueue.main.async {
+        self.updateSearchResults(for: self.navigationItem.searchController!)
+    }
+}
+                
+                
                 
             case .failure(let errorMessage):
                 self.presentMLAlertOnMainThread(title: "Bad Stuff Happened 😭", message: errorMessage.rawValue, buttonTitle: "Oh no!")
@@ -162,6 +172,20 @@ extension FollowerListVC: UICollectionViewDelegate{
             guard userHasMoreFollowers else { return }
             getFollowers(username: username, page: page)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let currentArray = filteredFollowers.isEmpty ? followers : filteredFollowers
+        
+        let follower = currentArray[indexPath.item]
+        
+        let destVC = UserInfoVC()
+        destVC.username = follower.login
+        
+        let navController = UINavigationController(rootViewController: destVC)
+        
+        present(navController, animated: true)
+        
     }
 }
 
