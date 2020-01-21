@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C828900B23D79B5900763929 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828900A23D79B5900763929 /* UserInfoVC.swift */; };
 		C83BA61A23D6593700717AB7 /* MLEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */; };
 		C84142E223CCE5E300A6383B /* FavouritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84142E123CCE5E300A6383B /* FavouritesListVC.swift */; };
 		C84142E423CCE76D00A6383B /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84142E323CCE76D00A6383B /* TabBar.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C828900A23D79B5900763929 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 		C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLEmptyStateView.swift; sourceTree = "<group>"; };
 		C84142E123CCE5E300A6383B /* FavouritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListVC.swift; sourceTree = "<group>"; };
 		C84142E323CCE76D00A6383B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				C84142E123CCE5E300A6383B /* FavouritesListVC.swift */,
 				C8EA45C323CE5B3700EF46B4 /* FollowerListVC.swift */,
 				C88C904823C2963D009F2517 /* SearchVC.swift */,
+				C828900A23D79B5900763929 /* UserInfoVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				C8EA45E123D1D51400EF46B4 /* FollowerCell.swift in Sources */,
 				C84142E223CCE5E300A6383B /* FavouritesListVC.swift in Sources */,
 				C8EA45D623D0B6DF00EF46B4 /* Follower.swift in Sources */,
+				C828900B23D79B5900763929 /* UserInfoVC.swift in Sources */,
 				C8EA45C823CFBB8800EF46B4 /* MLBodyLabel.swift in Sources */,
 				C88C904723C2963D009F2517 /* SceneDelegate.swift in Sources */,
 				C84142E823CCFEF500A6383B /* MLTextField.swift in Sources */,
