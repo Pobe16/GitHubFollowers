@@ -1,5 +1,5 @@
 //
-//  ErrorMessage.swift
+//  MLError.swift
 //  GitHubFollowers
 //
 //  Created by Mikolaj Lukasik on 16/01/2020.

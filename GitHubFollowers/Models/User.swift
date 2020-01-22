@@ -13,12 +13,12 @@ struct User: Codable {
     // in JSON we have it in snake case, and we need to convert it to camel casae so avatar_url.
     // JSONDecoder() can automatically decode it using decoder.keyDecodingStrategy = .convertFromSnakeCase
     let avatarUrl:              String
-    let name:                   String?
-    let location:               String?
-    let bio:                    String?
+    var name:                   String?
+    var location:               String?
+    var bio:                    String?
     let publicRepos:            Int
     let publicGists:            Int
-    let heirable:               Bool?
+    var hirable:                Bool?
     let htmlUrl:                String
     let following:              Int
     let followers:              Int
