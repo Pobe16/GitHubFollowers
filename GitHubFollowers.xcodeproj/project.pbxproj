@@ -40,6 +40,7 @@
 		C828900C23DA04D200763929 /* MLUserInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLUserInfoHeaderVC.swift; sourceTree = "<group>"; };
 		C828900E23DA054600763929 /* MLSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		C828901023DA0C2900763929 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C828901223DA109B00763929 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLEmptyStateView.swift; sourceTree = "<group>"; };
 		C84142E123CCE5E300A6383B /* FavouritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListVC.swift; sourceTree = "<group>"; };
 		C84142E323CCE76D00A6383B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 		C88C903823C2963D009F2517 = {
 			isa = PBXGroup;
 			children = (
+				C828901223DA109B00763929 /* README.md */,
 				C88C904323C2963D009F2517 /* GitHubFollowers */,
 				C88C904223C2963D009F2517 /* Products */,
 			);
