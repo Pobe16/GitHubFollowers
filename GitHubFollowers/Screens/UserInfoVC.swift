@@ -44,6 +44,8 @@ class UserInfoVC: UIViewController {
             case .success(let user):
                 DispatchQueue.main.async {
                     self.add(childVC: MLUserInfoHeaderVC(user: user), to: self.headerView)
+                    self.add(childVC: MLRepoItemVC(user: user), to: self.itemViewOne)
+                    self.add(childVC: MLFollowerInfoVC(user: user), to: self.itemViewTwo)
                 }
             case .failure(let error):
                 self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "🙁")
@@ -56,7 +58,7 @@ class UserInfoVC: UIViewController {
     
     func layoutUI() {
         let padding: CGFloat        = 20
-        let itemHeight: CGFloat     = 180
+        let itemHeight: CGFloat     = 140
         
         itemViews.append(contentsOf: [headerView, itemViewOne, itemViewTwo])
         
@@ -66,20 +68,19 @@ class UserInfoVC: UIViewController {
             
             NSLayoutConstraint.activate([
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-                $0.heightAnchor.constraint(equalToConstant: itemHeight)
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
             ])
         }
         
-        itemViewOne.backgroundColor = .systemPink
-        itemViewTwo.backgroundColor = .systemBlue
-        
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 180),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
             
-            itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding)
+            itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding),
+            itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
         ])
     }
     
