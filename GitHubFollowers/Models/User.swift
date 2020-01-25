@@ -22,5 +22,8 @@ struct User: Codable {
     let htmlUrl:                String
     let following:              Int
     let followers:              Int
-    let createdAt:              String
+    // It used String here previously, but someone in comments noted that the data is standarized in ISO 8601
+    // So I changed it to Date permanently with a decoder strategy:
+    // decoder.dateDecodingStrategy = .iso8601
+    let createdAt:              Date
 }

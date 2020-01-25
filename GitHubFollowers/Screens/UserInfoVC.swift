@@ -47,7 +47,7 @@ class UserInfoVC: UIViewController {
                     self.add(childVC: MLUserInfoHeaderVC(user: user), to: self.headerView)
                     self.add(childVC: MLRepoItemVC(user: user), to: self.itemViewOne)
                     self.add(childVC: MLFollowerInfoVC(user: user), to: self.itemViewTwo)
-                    self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
+                    self.setDateLabel(with: user.createdAt)
                 }
             case .failure(let error):
                 self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "🙁")
@@ -95,6 +95,15 @@ class UserInfoVC: UIViewController {
         containerView.addSubview(childVC.view)
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
+    }
+    
+    
+    func setDateLabel(with date: Date) {
+        let formatter           = DateFormatter()
+        formatter.locale        = .current
+        formatter.dateFormat    = "MMM yyyy"
+        
+        dateLabel.text          = "GitHub Since \(formatter.string(from: date))"
     }
     
     
