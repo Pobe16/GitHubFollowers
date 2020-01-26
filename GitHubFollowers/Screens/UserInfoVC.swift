@@ -18,6 +18,7 @@ class UserInfoVC: UIViewController {
     var itemViews: [UIView]     = []
     
     var username: String!
+    weak var delegate: FollowerListVCDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,18 +44,29 @@ class UserInfoVC: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let user):
-                DispatchQueue.main.async {
-                    self.add(childVC: MLUserInfoHeaderVC(user: user), to: self.headerView)
-                    self.add(childVC: MLRepoItemVC(user: user), to: self.itemViewOne)
-                    self.add(childVC: MLFollowerInfoVC(user: user), to: self.itemViewTwo)
-                    self.setDateLabel(with: user.createdAt)
-                }
+                DispatchQueue.main.async { self.configureUIElement(with: user) }
             case .failure(let error):
                 self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "🙁")
                 break
             }
             
         }
+    }
+    
+    
+    func configureUIElement(with user: User) {
+        
+        let repoItemVC          = MLRepoItemVC(user: user)
+        repoItemVC.delegate     = self
+        
+        let followerItemVC      = MLFollowerItemVC(user: user)
+        followerItemVC.delegate = self
+        
+        self.add(childVC: MLUserInfoHeaderVC(user: user), to: self.headerView)
+        self.add(childVC: repoItemVC, to: self.itemViewOne)
+        self.add(childVC: followerItemVC, to: self.itemViewTwo)
+        self.setDateLabel(with: user.createdAt)
+        
     }
     
     
@@ -111,6 +123,33 @@ class UserInfoVC: UIViewController {
         dismiss(animated: true)
     }
     
+}
 
-
+extension UserInfoVC: UserInfoVCDelegate {
+    func didTapGitHubProfile(for user: User) {
+        // show safari view controller
+        print("Pokaż profil.")
+        guard let url = URL(string: user.htmlUrl) else {
+            presentMLAlertOnMainThread(title: "Invalid URL", message: "The URL attached to this user is invalid", buttonTitle: "Oh no!")
+            return
+        }
+        
+        presentSafariVC(with: url)
+    }
+    
+    func didTapGetFollowers(for user: User) {
+        // dismiss vc
+        // tell follower list screen the new user
+        print("Załaduj obserwujących.")
+        
+        guard user.followers != 0 else {
+            presentMLAlertOnMainThread(title: "No followers", message: "This user has no followers. Go follow them 😇", buttonTitle: "On it!")
+            return
+        }
+        delegate.didRequestFollowers(for: user.login)
+        dismissVC()
+    }
+    
+    
+    
 }

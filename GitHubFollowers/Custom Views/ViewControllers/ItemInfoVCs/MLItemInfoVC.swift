@@ -17,6 +17,8 @@ class MLItemInfoVC: UIViewController {
     
     var user: User!
     
+    weak var delegate: UserInfoVCDelegate!
+    
     
     init(user: User) {
        super.init(nibName: nil, bundle: nil)
@@ -34,6 +36,7 @@ class MLItemInfoVC: UIViewController {
         configureBackgroundView()
         layoutUI()
         configureStackView()
+        configureActionButton()
 
     }
     
@@ -55,6 +58,16 @@ class MLItemInfoVC: UIViewController {
         stackView.addArrangedSubview(itemInfoViewTwo)
         stackView.addArrangedSubview(UIView())
 
+    }
+    
+    
+    private func configureActionButton() {
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+    }
+    
+    
+    @objc func actionButtonTapped() {
+        
     }
     
     
