@@ -54,6 +54,9 @@ class FollowerListVC: UIViewController {
     func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let addButton                      = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem   = addButton
     }
     
     
@@ -109,15 +112,13 @@ class FollowerListVC: UIViewController {
                 
                 self.page += 1
                 
-if self.filteredFollowers.isEmpty{
-    self.updateData(on: self.followers)
-} else {
-    DispatchQueue.main.async {
-        self.updateSearchResults(for: self.navigationItem.searchController!)
-    }
-}
-                
-                
+                if self.filteredFollowers.isEmpty{
+                    self.updateData(on: self.followers)
+                } else {
+                    DispatchQueue.main.async {
+                        self.updateSearchResults(for: self.navigationItem.searchController!)
+                    }
+                }
                 
             case .failure(let errorMessage):
                 self.presentMLAlertOnMainThread(title: "Bad Stuff Happened 😭", message: errorMessage.rawValue, buttonTitle: "Oh no!")
@@ -154,9 +155,11 @@ if self.filteredFollowers.isEmpty{
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
-        
-        
-        
+    }
+    
+    
+    @objc func addButtonTapped() {
+        presentMLAlertOnMainThread(title: "Add to favourites", message: "Adding to favourites is not implemented yet. Stay tuned.", buttonTitle: "Okay… 😞")
     }
 
 }
