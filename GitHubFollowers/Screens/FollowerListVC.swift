@@ -21,14 +21,11 @@ class FollowerListVC: UIViewController {
     var filteredFollowers: [Follower] = []
     
     var collectionView: UICollectionView!
-    var numberOfColumns: Int = 3
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        determineNumberOfColumns()
         configureViewController()
         configureSearchController()
         configureCollectionView()
@@ -41,13 +38,20 @@ class FollowerListVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        recalculateLayout(for: size)
+    }
     
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if previousTraitCollection?.horizontalSizeClass != self.traitCollection.horizontalSizeClass {
-            determineNumberOfColumns()
-            configureCollectionView()
-        }
+        recalculateLayout(for: view.bounds.size)
+    }
+    
+    func recalculateLayout(for newSize: CGSize) {
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        collectionView.collectionViewLayout = UIHelper.updateColumnFlowLayout(for: flowLayout, withNewSize: newSize, numberOfColumns: getNumberOfColumns())
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     
@@ -55,22 +59,21 @@ class FollowerListVC: UIViewController {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let addButton                      = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        let addButton                       = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem   = addButton
     }
     
     
-    func determineNumberOfColumns() {
+    func getNumberOfColumns() -> Int {
         let horizontalSize = self.traitCollection.horizontalSizeClass
         switch horizontalSize {
         case .compact:
-            numberOfColumns = 3
+            return 3
         case .regular:
-            numberOfColumns = 5
+            return 5
         default:
-            numberOfColumns = 3
+            return 3
         }
-        print("Changing number of columns to \(numberOfColumns)")
     }
     
     
@@ -128,8 +131,17 @@ class FollowerListVC: UIViewController {
     
     
     func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createColumnFlowLayout(in: view, numberOfColumns: numberOfColumns))
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createColumnFlowLayout(in: view, numberOfColumns: getNumberOfColumns()))
         view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
         
         collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
@@ -224,12 +236,14 @@ extension FollowerListVC: FollowerListVCDelegate {
         
         filteredFollowers.removeAll()
         
-
-        navigationItem.searchController?.searchBar.text = ""
-        
-        DispatchQueue.main.async {
-            self.navigationItem.searchController?.searchBar.resignFirstResponder()
-            self.navigationItem.searchController?.dismiss(animated: false)
+        if !(navigationItem.searchController?.searchBar.text?.isEmpty ?? true) {
+            navigationItem.searchController?.searchBar.text = ""
+            navigationItem.searchController?.isActive = false
+            
+            DispatchQueue.main.async {
+                self.navigationItem.searchController?.searchBar.resignFirstResponder()
+                self.navigationItem.searchController?.dismiss(animated: false)
+            }
         }
         
         followers.removeAll()
