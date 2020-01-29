@@ -128,7 +128,7 @@ class UserInfoVC: UIViewController {
 extension UserInfoVC: UserInfoVCDelegate {
     func didTapGitHubProfile(for user: User) {
         // show safari view controller
-        print("Pokaż profil.")
+        
         guard let url = URL(string: user.htmlUrl) else {
             presentMLAlertOnMainThread(title: "Invalid URL", message: "The URL attached to this user is invalid", buttonTitle: "Oh no!")
             return
@@ -139,8 +139,7 @@ extension UserInfoVC: UserInfoVCDelegate {
     
     func didTapGetFollowers(for user: User) {
         // dismiss vc
-        // tell follower list screen the new user
-        print("Załaduj obserwujących.")
+        // tell follower list screen the new use
         
         guard user.followers != 0 else {
             presentMLAlertOnMainThread(title: "No followers", message: "This user has no followers. Go follow them 😇", buttonTitle: "On it!")
