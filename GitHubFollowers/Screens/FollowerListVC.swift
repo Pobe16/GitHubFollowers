@@ -221,10 +221,20 @@ extension FollowerListVC: FollowerListVCDelegate {
         
         page            = 1
         
-        followers.removeAll()
+        
         filteredFollowers.removeAll()
+        
+
+        navigationItem.searchController?.searchBar.text = ""
+        
+        DispatchQueue.main.async {
+            self.navigationItem.searchController?.searchBar.resignFirstResponder()
+            self.navigationItem.searchController?.dismiss(animated: false)
+        }
+        
+        followers.removeAll()
+        
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         getFollowers(username: username, page: page)
-        
     }
 }
