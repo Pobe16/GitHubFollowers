@@ -9,17 +9,25 @@
 import UIKit
 
 class FavouritesListVC: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBlue
+        
+        PersistenceManager.retrieveFavourites { [weak self] result in
+            guard let self = self else { return }
+            switch result{
+            case .success(let favourites):
+                print(favourites)
+            case .failure(let error):
+                self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+            }
+        }
 
     }
-    
 
-    /*
-    // MARK: - Navigation
-    */
 
 }

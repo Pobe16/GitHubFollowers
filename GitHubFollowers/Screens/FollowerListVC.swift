@@ -171,7 +171,33 @@ class FollowerListVC: UIViewController {
     
     
     @objc func addButtonTapped() {
-        presentMLAlertOnMainThread(title: "Add to favourites", message: "Adding to favourites is not implemented yet. Stay tuned.", buttonTitle: "Okay… 😞")
+        
+        showLoadingView()
+        
+        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+            case .success(let user):
+                
+                let favourite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+                
+                PersistenceManager.updateWith(favourite: favourite, actionType: .add) { [weak self] error in
+                    guard let self = self else { return }
+                    guard let error = error else {
+                        self.presentMLAlertOnMainThread(title: "Success!", message: "You have successfully favourited \(user.login)! 🎉", buttonTitle: "Hooray!")
+                        return
+                    }
+                    
+                    self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+                }
+                
+            case .failure(let error):
+                self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Oh no 😞")
+            }
+        }
+//        presentMLAlertOnMainThread(title: "Add to favourites", message: "Adding to favourites is not implemented yet. Stay tuned.", buttonTitle: "Okay… 😞")
     }
 
 }
