@@ -57,12 +57,24 @@ extension UIViewController {
         
     }
     
-    func showEmptyStateView(with message: String, in view: UIView) {
+    func showEmptyStateView(withMessage message: String, in view: UIView) {
         let emptyStateView = MLEmptyStateView(message: message)
         emptyStateView.frame = view.bounds
         
-        view.addSubview(emptyStateView)
+        if view.subviews.contains(emptyStateView) {
+            view.bringSubviewToFront(emptyStateView)
+        } else {
+            view.addSubview(emptyStateView)
+        }
         
+    }
+    
+    func removeEmptyStateView(in view: UIView) {
+        view.subviews.forEach { subView in
+            if subView is MLEmptyStateView {
+                subView.removeFromSuperview()
+            }
+        }
     }
     
     func presentSafariVC(with url: URL) {
