@@ -7,9 +7,9 @@
 * Caches images
 * Automatic Dark Mode
 * Full multiple device / iPad multitasking layout
+* adding an account to favourites
 
 ### To be developed:
-* adding an account to favourites
 * displaying GitHub Repos
 
 
