@@ -11,7 +11,7 @@ import UIKit
 class MLAvatarImageView: UIImageView {
     
     let cache               = NetworkManager.shared.cache
-    let placeholderImage    = UIImage(named: "avatar-placeholder")!
+    let placeholderImage    = Images.avatarPlaceholder
     
     override init(frame: CGRect) {
         super.init(frame: frame)

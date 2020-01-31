@@ -39,6 +39,8 @@ class MLTextField: UITextField {
         keyboardType                = .default
         returnKeyType               = .search
         autocapitalizationType      = .none
+        clearButtonMode             = .whileEditing
+        
         placeholder                 = "Enter a username"
     }
 
