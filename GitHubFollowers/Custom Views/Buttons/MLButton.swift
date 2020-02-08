@@ -23,11 +23,10 @@ class MLButton: UIButton {
     
     // MARK: - CUSTOM INITIALISER
     
-    init(withColor backgroundColor: UIColor, withTitle title: String) {
-        super.init(frame: .zero)
+    convenience init(withColor backgroundColor: UIColor, withTitle title: String) {
+        self.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
-        configure()
     }
     
     
