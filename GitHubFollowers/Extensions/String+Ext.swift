@@ -8,21 +8,24 @@
 //  I am leaving this file, just in case.
 //
 
-import Foundation
+// MARK: Explanation
+// This is not needed, as we don't convert the date manually anymore
 
-extension String {
-    
-    func convertToDate() -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat    = "yyyy-MM-dd'T'HH:mm:ssZ"
-        dateFormatter.locale        = Locale(identifier: "pl_PL")
-        dateFormatter.timeZone      = .current
-        
-        return dateFormatter.date(from: self)
-    }
-    
-    func convertToDisplayFormat() -> String {
-        guard let date = self.convertToDate() else { return "N/A" }
-        return date.convertToMonthYearFormat()
-    }
-}
+//import Foundation
+//
+//extension String {
+//
+//    func convertToDate() -> Date? {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat    = "yyyy-MM-dd'T'HH:mm:ssZ"
+//        dateFormatter.locale        = Locale(identifier: "pl_PL")
+//        dateFormatter.timeZone      = .current
+//
+//        return dateFormatter.date(from: self)
+//    }
+//
+//    func convertToDisplayFormat() -> String {
+//        guard let date = self.convertToDate() else { return "N/A" }
+//        return date.convertToMonthYearFormat()
+//    }
+//}

@@ -10,7 +10,7 @@ import UIKit
 
 class MLAlertVC: UIViewController {
     
-    let containerView = UIView()
+    let containerView = MLAlertContainerView()
     let titleLabel = MLTitleLabel(textAlignment: .center, fontSize: 20)
     let messageLabel = MLBodyLabel(textAlignment: .center)
     let actionButton = MLButton(withColor: .systemPink, withTitle: "OK")
@@ -38,7 +38,7 @@ class MLAlertVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         
         configureContainerView()
         configureTitleLabel()
@@ -51,12 +51,6 @@ class MLAlertVC: UIViewController {
     func configureContainerView() {
         view.addSubview(containerView)
         
-        containerView.layer.cornerRadius    = 16
-        containerView.layer.borderWidth     = 2
-        containerView.layer.borderColor     = UIColor.white.cgColor
-        containerView.backgroundColor       = .systemBackground
-        
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
