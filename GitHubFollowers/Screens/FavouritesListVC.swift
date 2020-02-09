@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesListVC: UIViewController {
+class FavouritesListVC: MLDataLoadingVC {
     
     let tableView                   = UITableView()
     var favourites: [Follower]      = []
