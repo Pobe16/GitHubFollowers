@@ -20,6 +20,7 @@
 		C828902223DE2C9B00763929 /* UserInfoVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828902123DE2C9B00763929 /* UserInfoVCDelegate.swift */; };
 		C828902423DE33DB00763929 /* FollowerListVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828902323DE33DB00763929 /* FollowerListVCDelegate.swift */; };
 		C83901A523EF78C0003CD827 /* MLAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83901A423EF78C0003CD827 /* MLAlertContainerView.swift */; };
+		C83901A723F06F06003CD827 /* MLDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83901A623F06F06003CD827 /* MLDataLoadingVC.swift */; };
 		C83BA61A23D6593700717AB7 /* MLEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */; };
 		C84142E223CCE5E300A6383B /* FavouritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84142E123CCE5E300A6383B /* FavouritesListVC.swift */; };
 		C84142E423CCE76D00A6383B /* MLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84142E323CCE76D00A6383B /* MLTabBarController.swift */; };
@@ -61,6 +62,7 @@
 		C828902123DE2C9B00763929 /* UserInfoVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVCDelegate.swift; sourceTree = "<group>"; };
 		C828902323DE33DB00763929 /* FollowerListVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVCDelegate.swift; sourceTree = "<group>"; };
 		C83901A423EF78C0003CD827 /* MLAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLAlertContainerView.swift; sourceTree = "<group>"; };
+		C83901A623F06F06003CD827 /* MLDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDataLoadingVC.swift; sourceTree = "<group>"; };
 		C83BA61923D6593700717AB7 /* MLEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLEmptyStateView.swift; sourceTree = "<group>"; };
 		C84142E123CCE5E300A6383B /* FavouritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListVC.swift; sourceTree = "<group>"; };
 		C84142E323CCE76D00A6383B /* MLTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLTabBarController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				C828901B23DBAE7600763929 /* ItemInfoVCs */,
 				C8EA45C923CFBC4000EF46B4 /* MLAlertVC.swift */,
 				C828900C23DA04D200763929 /* MLUserInfoHeaderVC.swift */,
+				C83901A623F06F06003CD827 /* MLDataLoadingVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				C84142E623CCF85B00A6383B /* MLButton.swift in Sources */,
 				C88C904923C2963D009F2517 /* SearchVC.swift in Sources */,
 				C8EA45C623CFB9EE00EF46B4 /* MLTitleLabel.swift in Sources */,
+				C83901A723F06F06003CD827 /* MLDataLoadingVC.swift in Sources */,
 				C8D2929723E221E6001DD45E /* PersistenceManager.swift in Sources */,
 				C88C904523C2963D009F2517 /* AppDelegate.swift in Sources */,
 				C8EA45D823D0B8D100EF46B4 /* User.swift in Sources */,

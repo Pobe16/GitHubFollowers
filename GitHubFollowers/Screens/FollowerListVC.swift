@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FollowerListVC: UIViewController {
+class FollowerListVC: MLDataLoadingVC {
     
     enum Section {
         case main
