@@ -40,6 +40,8 @@ class MLEmptyStateView: UIView {
         
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
+        
+        
         NSLayoutConstraint.activate([
             messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -130),
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
