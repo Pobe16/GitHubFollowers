@@ -40,7 +40,13 @@ class MLAlertVC: UIViewController {
         
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         
+        
         configureContainerView()
+        containerView.addSubviews(
+            titleLabel,
+            actionButton,
+            messageLabel
+        )
         configureTitleLabel()
         configureActionButton()
         configureMessageLabel()
@@ -61,7 +67,6 @@ class MLAlertVC: UIViewController {
     
     
     func configureTitleLabel() {
-        containerView.addSubview(titleLabel)
         titleLabel.text = alertTitle ?? "Something went wrong"
         
         NSLayoutConstraint.activate([
@@ -74,7 +79,6 @@ class MLAlertVC: UIViewController {
     
     
     func configureActionButton() {
-        containerView.addSubview(actionButton)
         actionButton.setTitle(buttonTitle ?? "OK", for: .normal)
         
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
@@ -89,7 +93,6 @@ class MLAlertVC: UIViewController {
     
     
     func configureMessageLabel() {
-        containerView.addSubview(messageLabel)
         messageLabel.text = message ?? "Unable to complete request"
         messageLabel.numberOfLines = 4
         
