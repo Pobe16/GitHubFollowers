@@ -28,10 +28,11 @@ class MLSecondaryTitleLabel: UILabel {
     
     
     private func configure() {
-        textColor                       = .secondaryLabel
-        adjustsFontSizeToFitWidth       = true
-        minimumScaleFactor              = 0.9
-        lineBreakMode                   = .byTruncatingTail
+        textColor                           = .secondaryLabel
+        adjustsFontSizeToFitWidth           = true
+        adjustsFontForContentSizeCategory   = true
+        minimumScaleFactor                  = 0.9
+        lineBreakMode                       = .byTruncatingTail
         
         translatesAutoresizingMaskIntoConstraints = false
     }

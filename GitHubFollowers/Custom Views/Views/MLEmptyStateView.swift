@@ -30,8 +30,7 @@ class MLEmptyStateView: UIView {
     }
     
     private func configure() {
-        addSubview(messageLabel)
-        addSubview(logoImageView)
+        addSubviews(messageLabel, logoImageView)
         
         messageLabel.numberOfLines          = 3
         messageLabel.textColor              = .secondaryLabel

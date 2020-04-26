@@ -25,6 +25,12 @@ class SearchVC: UIViewController {
         
         view.backgroundColor = .systemBackground
         
+        view.addSubviews(
+            logoImageView,
+            usernameTextField,
+            callToActionButton
+        )
+        
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
@@ -61,7 +67,6 @@ class SearchVC: UIViewController {
 
     
     private func configureLogoImageView() {
-        view.addSubview(logoImageView)
         logoImageView.image = Images.ghLogo
         
         // this is here to fix the search text field being overlayed by keyboard on iPhone SE
@@ -77,7 +82,6 @@ class SearchVC: UIViewController {
     }
     
     private func configureTextField() {
-        view.addSubview(usernameTextField)
         usernameTextField.delegate = self
         
         
@@ -92,7 +96,6 @@ class SearchVC: UIViewController {
     }
     
     private func configureCallToActionButton () {
-        view.addSubview(callToActionButton)
         
         callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
