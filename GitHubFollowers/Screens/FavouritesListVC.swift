@@ -20,6 +20,7 @@ class FavouritesListVC: MLDataLoadingVC {
         
         configureViewController()
         configureTableView()
+        
 
     }
     
@@ -54,6 +55,7 @@ class FavouritesListVC: MLDataLoadingVC {
         
         tableView.delegate          = self
         tableView.dataSource        = self
+        tableView.removeExcessCells()
         
         tableView.register(FavouriteCell.self, forCellReuseIdentifier: FavouriteCell.reuseID)
     }
