@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol FollowerListVCDelegate: class {
+    func didRequestFollowers(for username: String)
+}
+
+
 class UserInfoVC: UIViewController {
     
     let headerView              = UIView()
@@ -55,16 +60,18 @@ class UserInfoVC: UIViewController {
     
     
     func configureUIElement(with user: User) {
-        
-        let repoItemVC          = MLRepoItemVC(user: user)
-        repoItemVC.delegate     = self
-        
-        let followerItemVC      = MLFollowerItemVC(user: user)
-        followerItemVC.delegate = self
-        
-        self.add(childVC: MLUserInfoHeaderVC(user: user), to: self.headerView)
-        self.add(childVC: repoItemVC, to: self.itemViewOne)
-        self.add(childVC: followerItemVC, to: self.itemViewTwo)
+        self.add(
+            childVC: MLUserInfoHeaderVC(user: user),
+            to: self.headerView
+        )
+        self.add(
+            childVC: MLRepoItemVC(user: user, delegate: self),
+            to: self.itemViewOne
+        )
+        self.add(
+            childVC: MLFollowerItemVC(user: user, delegate: self),
+            to: self.itemViewTwo
+        )
         self.setDateLabel(with: user.createdAt)
         
     }
@@ -125,7 +132,8 @@ class UserInfoVC: UIViewController {
     
 }
 
-extension UserInfoVC: UserInfoVCDelegate {
+
+extension UserInfoVC: MLRepoItemVCDelegate {
     func didTapGitHubProfile(for user: User) {
         // show safari view controller
         
@@ -136,7 +144,10 @@ extension UserInfoVC: UserInfoVCDelegate {
         
         presentSafariVC(with: url)
     }
-    
+}
+
+
+extension UserInfoVC: MLFollowerItemVCDelegate {
     func didTapGetFollowers(for user: User) {
         // dismiss vc
         // tell follower list screen the new use

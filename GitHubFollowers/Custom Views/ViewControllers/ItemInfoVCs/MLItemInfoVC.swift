@@ -15,10 +15,7 @@ class MLItemInfoVC: UIViewController {
     let itemInfoViewTwo             = MLItemInfoView()
     let actionButton                = MLButton()
     
-    var user: User!
-    
-    weak var delegate: UserInfoVCDelegate!
-    
+    var user: User!    
     
     init(user: User) {
        super.init(nibName: nil, bundle: nil)

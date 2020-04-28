@@ -17,8 +17,6 @@
 		C828901A23DBAE0200763929 /* MLFollowerItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828901923DBAE0200763929 /* MLFollowerItemVC.swift */; };
 		C828901D23DD07CE00763929 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828901C23DD07CE00763929 /* Date+Ext.swift */; };
 		C828901F23DD080B00763929 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828901E23DD080B00763929 /* String+Ext.swift */; };
-		C828902223DE2C9B00763929 /* UserInfoVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828902123DE2C9B00763929 /* UserInfoVCDelegate.swift */; };
-		C828902423DE33DB00763929 /* FollowerListVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828902323DE33DB00763929 /* FollowerListVCDelegate.swift */; };
 		C830B3C024561A0900D31B8C /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C830B3BF24561A0900D31B8C /* UIView+Ext.swift */; };
 		C83901A523EF78C0003CD827 /* MLAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83901A423EF78C0003CD827 /* MLAlertContainerView.swift */; };
 		C83901A723F06F06003CD827 /* MLDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83901A623F06F06003CD827 /* MLDataLoadingVC.swift */; };
@@ -60,8 +58,6 @@
 		C828901923DBAE0200763929 /* MLFollowerItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLFollowerItemVC.swift; sourceTree = "<group>"; };
 		C828901C23DD07CE00763929 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C828901E23DD080B00763929 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
-		C828902123DE2C9B00763929 /* UserInfoVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVCDelegate.swift; sourceTree = "<group>"; };
-		C828902323DE33DB00763929 /* FollowerListVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVCDelegate.swift; sourceTree = "<group>"; };
 		C830B3BF24561A0900D31B8C /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C83901A423EF78C0003CD827 /* MLAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLAlertContainerView.swift; sourceTree = "<group>"; };
 		C83901A623F06F06003CD827 /* MLDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDataLoadingVC.swift; sourceTree = "<group>"; };
@@ -117,8 +113,6 @@
 		C828902023DE2C7D00763929 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				C828902123DE2C9B00763929 /* UserInfoVCDelegate.swift */,
-				C828902323DE33DB00763929 /* FollowerListVCDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -395,7 +389,6 @@
 				C828900B23D79B5900763929 /* UserInfoVC.swift in Sources */,
 				C828901823DBAC0900763929 /* MLRepoItemVC.swift in Sources */,
 				C8EA45C823CFBB8800EF46B4 /* MLBodyLabel.swift in Sources */,
-				C828902423DE33DB00763929 /* FollowerListVCDelegate.swift in Sources */,
 				C88C904723C2963D009F2517 /* SceneDelegate.swift in Sources */,
 				C828901F23DD080B00763929 /* String+Ext.swift in Sources */,
 				C84142E823CCFEF500A6383B /* MLTextField.swift in Sources */,
@@ -410,7 +403,6 @@
 				C828901A23DBAE0200763929 /* MLFollowerItemVC.swift in Sources */,
 				C84142E423CCE76D00A6383B /* MLTabBarController.swift in Sources */,
 				C828901123DA0C2900763929 /* Constants.swift in Sources */,
-				C828902223DE2C9B00763929 /* UserInfoVCDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
