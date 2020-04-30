@@ -10,12 +10,12 @@ import UIKit
 
 class MLUserInfoHeaderVC: UIViewController {
     
-    let avatarImageView             = MLAvatarImageView(frame: .zero)
-    let usernameLabel               = MLTitleLabel(textAlignment: .left, fontSize: 34)
-    let nameLabel                   = MLSecondaryTitleLabel(fontSize: 18)
-    let locationImageView           = UIImageView()
-    let locationLabel               = MLSecondaryTitleLabel(fontSize: 18)
-    let bioLabel                    = MLBodyLabel(textAlignment: .left)
+    let avatarImageView                     = MLAvatarImageView(frame: .zero)
+    let usernameLabel                       = MLTitleLabel(textAlignment: .left, fontSize: 34)
+    let nameLabel                           = MLSecondaryTitleLabel(fontSize: 18)
+    let locationImageView                   = UIImageView()
+    let locationLabel                       = MLSecondaryTitleLabel(fontSize: 18)
+    let bioLabel                            = MLBodyLabel(textAlignment: .left)
     
     var user: User!
 
@@ -33,34 +33,7 @@ class MLUserInfoHeaderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSubviews()
-        layoutUI()
-        configureUIElements()
-    }
-    
-    
-    func configureUIElements() {
-        downloadAvatarImage()
-        usernameLabel.text          = user.login
-        nameLabel.text              = user.name ?? ""
-        locationLabel.text          = user.location ?? "No Location"
-        bioLabel.text               = user.bio ?? "No bio available"
-        bioLabel.numberOfLines      = 3
-        locationImageView.image     = SFSymbols.location
-        locationImageView.tintColor = .secondaryLabel
-    }
-    
-    func downloadAvatarImage() {
-        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] image in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.avatarImageView.image = image
-            }
-        }
-    }
-    
-    
-    func addSubviews() {
+        
         view.addSubviews(
             avatarImageView,
             usernameLabel,
@@ -69,6 +42,21 @@ class MLUserInfoHeaderVC: UIViewController {
             locationLabel,
             bioLabel
         )
+        
+        layoutUI()
+        configureUIElements()
+    }
+    
+    
+    func configureUIElements() {
+        avatarImageView.downloadImage(fromURL: user.avatarUrl)
+        usernameLabel.text                  = user.login
+        nameLabel.text                      = user.name ?? ""
+        locationLabel.text                  = user.location ?? "No Location"
+        bioLabel.text                       = user.bio ?? "No bio available"
+        bioLabel.numberOfLines              = 3
+        locationImageView.image             = SFSymbols.location
+        locationImageView.tintColor         = .secondaryLabel
     }
     
     

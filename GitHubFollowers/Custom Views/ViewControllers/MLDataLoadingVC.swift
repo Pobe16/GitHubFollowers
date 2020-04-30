@@ -17,6 +17,7 @@ class MLDataLoadingVC: UIViewController {
 
     }
     
+    
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
@@ -48,6 +49,4 @@ class MLDataLoadingVC: UIViewController {
         }
         
     }
-
-
 }

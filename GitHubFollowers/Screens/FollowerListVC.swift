@@ -15,11 +15,11 @@ class FollowerListVC: MLDataLoadingVC {
     }
     
     var username: String!
-    var page: Int = 1
-    var userHasMoreFollowers: Bool = true
-    var followers: [Follower] = []
-    var filteredFollowers: [Follower] = []
-    var isLoadingMoreFollowers: Bool = false
+    var page: Int                       = 1
+    var userHasMoreFollowers: Bool      = true
+    var followers: [Follower]           = []
+    var filteredFollowers: [Follower]   = []
+    var isLoadingMoreFollowers: Bool    = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
@@ -30,9 +30,11 @@ class FollowerListVC: MLDataLoadingVC {
         title               = username
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,8 @@ class FollowerListVC: MLDataLoadingVC {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         recalculateLayout(for: size)
@@ -57,6 +61,7 @@ class FollowerListVC: MLDataLoadingVC {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         recalculateLayout(for: view.bounds.size)
     }
+    
     
     func recalculateLayout(for newSize: CGSize) {
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
@@ -108,36 +113,40 @@ class FollowerListVC: MLDataLoadingVC {
             
             switch result {
             case .success(let followers):
-                if followers.count < 100 {
-                    self.userHasMoreFollowers = false
-                }
-                self.followers.append(contentsOf: followers)
-                
-                if self.followers.isEmpty {
-                    let message = "This user doesn't have any followers. Go follow them 😄."
-
-                    DispatchQueue.main.async {
-                        self.showEmptyStateView(withMessage: message, in: self.view)
-                    }
-                    return
-                }
-                
-                
-                self.page += 1
-                
-                if self.filteredFollowers.isEmpty{
-                    self.updateData(on: self.followers)
-                } else {
-                    DispatchQueue.main.async {
-                        self.updateSearchResults(for: self.navigationItem.searchController!)
-                    }
-                }
+                self.updateUI(with: followers)
                 
             case .failure(let errorMessage):
                 self.presentMLAlertOnMainThread(title: "Bad Stuff Happened 😭", message: errorMessage.rawValue, buttonTitle: "Oh no!")
             }
             
             self.isLoadingMoreFollowers = false
+        }
+    }
+    
+    
+    func updateUI(with followers: [Follower]) {
+        if followers.count < 100 {
+            self.userHasMoreFollowers = false
+        }
+        self.followers.append(contentsOf: followers)
+        
+        if self.followers.isEmpty {
+            let message = "This user doesn't have any followers. Go follow them 😄."
+
+            DispatchQueue.main.async {
+                self.showEmptyStateView(withMessage: message, in: self.view)
+            }
+            return
+        }
+        
+        self.page += 1
+        
+        if self.filteredFollowers.isEmpty{
+            self.updateData(on: self.followers)
+        } else {
+            DispatchQueue.main.async {
+                self.updateSearchResults(for: self.navigationItem.searchController!)
+            }
         }
     }
     
@@ -162,6 +171,7 @@ class FollowerListVC: MLDataLoadingVC {
         
     }
     
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
@@ -170,6 +180,7 @@ class FollowerListVC: MLDataLoadingVC {
             return cell
         })
     }
+    
     
     func updateData(on followersList: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
@@ -192,28 +203,34 @@ class FollowerListVC: MLDataLoadingVC {
             
             switch result {
             case .success(let user):
-                
-                let favourite = Follower(login: user.login, avatarUrl: user.avatarUrl)
-                
-                PersistenceManager.updateWith(favourite: favourite, actionType: .add) { [weak self] error in
-                    guard let self = self else { return }
-                    guard let error = error else {
-                        self.presentMLAlertOnMainThread(title: "Success!", message: "You have successfully favourited \(user.login)! 🎉", buttonTitle: "Hooray!")
-                        return
-                    }
-                    
-                    self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
-                }
+                self.addUserToFavourites(user: user)
                 
             case .failure(let error):
                 self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Oh no 😞")
             }
         }
     }
+    
+    
+    func addUserToFavourites(user: User) {
+        let favourite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+        
+        PersistenceManager.updateWith(favourite: favourite, actionType: .add) { [weak self] error in
+            guard let self = self else { return }
+            guard let error = error else {
+                self.presentMLAlertOnMainThread(title: "Success!", message: "You have successfully favourited \(user.login)! 🎉", buttonTitle: "Hooray!")
+                return
+            }
+            
+            self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+        }
+    }
 
 }
 
+
 extension FollowerListVC: UICollectionViewDelegate{
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY             = scrollView.contentOffset.y
         let contentHeight       = scrollView.contentSize.height
@@ -225,6 +242,7 @@ extension FollowerListVC: UICollectionViewDelegate{
             getFollowers(username: username, page: page)
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let currentArray = filteredFollowers.isEmpty ? followers : filteredFollowers
@@ -244,6 +262,7 @@ extension FollowerListVC: UICollectionViewDelegate{
 
 
 extension FollowerListVC: UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
             filteredFollowers.removeAll()
@@ -258,19 +277,19 @@ extension FollowerListVC: UISearchResultsUpdating {
 
 
 extension FollowerListVC: FollowerListVCDelegate {
+    
     func didRequestFollowers(for username: String) {
         // get followers for that user
         self.username   = username
         title           = username
-        
         page            = 1
         
         
         filteredFollowers.removeAll()
         
         if !(navigationItem.searchController?.searchBar.text?.isEmpty ?? true) {
-            navigationItem.searchController?.searchBar.text = ""
-            navigationItem.searchController?.isActive = false
+            navigationItem.searchController?.searchBar.text     = ""
+            navigationItem.searchController?.isActive           = false
             
             DispatchQueue.main.async {
                 self.navigationItem.searchController?.searchBar.resignFirstResponder()

@@ -10,15 +10,16 @@ import UIKit
 
 class FavouriteCell: UITableViewCell {
     
-    static let reuseID = "FavouriteCell"
-    
+    static let reuseID      = "FavouriteCell"
     let avatarImageView     = MLAvatarImageView(frame: .zero)
     let usernameLabel       = MLTitleLabel(textAlignment: .left, fontSize: 26)
 
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -27,26 +28,13 @@ class FavouriteCell: UITableViewCell {
     
     func set(favourite: Follower) {
         usernameLabel.text = favourite.login
-        NetworkManager.shared.downloadImage(from: favourite.avatarUrl) { [weak self] image in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.avatarImageView.image = image
-            }
-        }
-    }
-    
-    
-    func downloadAvatarImage () {
-        
+        avatarImageView.downloadImage(fromURL: favourite.avatarUrl)
     }
 
     
     private func configure() {
-        
         addSubviews(avatarImageView, usernameLabel)
-        
         accessoryType               = .disclosureIndicator
-        
         let padding: CGFloat        = 12
         
         NSLayoutConstraint.activate([

@@ -16,7 +16,6 @@
 		C828901823DBAC0900763929 /* MLRepoItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828901723DBAC0900763929 /* MLRepoItemVC.swift */; };
 		C828901A23DBAE0200763929 /* MLFollowerItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828901923DBAE0200763929 /* MLFollowerItemVC.swift */; };
 		C828901D23DD07CE00763929 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828901C23DD07CE00763929 /* Date+Ext.swift */; };
-		C828901F23DD080B00763929 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828901E23DD080B00763929 /* String+Ext.swift */; };
 		C830B3C024561A0900D31B8C /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C830B3BF24561A0900D31B8C /* UIView+Ext.swift */; };
 		C83901A523EF78C0003CD827 /* MLAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83901A423EF78C0003CD827 /* MLAlertContainerView.swift */; };
 		C83901A723F06F06003CD827 /* MLDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83901A623F06F06003CD827 /* MLDataLoadingVC.swift */; };
@@ -58,7 +57,6 @@
 		C828901723DBAC0900763929 /* MLRepoItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLRepoItemVC.swift; sourceTree = "<group>"; };
 		C828901923DBAE0200763929 /* MLFollowerItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLFollowerItemVC.swift; sourceTree = "<group>"; };
 		C828901C23DD07CE00763929 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		C828901E23DD080B00763929 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		C830B3BF24561A0900D31B8C /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C83901A423EF78C0003CD827 /* MLAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLAlertContainerView.swift; sourceTree = "<group>"; };
 		C83901A623F06F06003CD827 /* MLDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDataLoadingVC.swift; sourceTree = "<group>"; };
@@ -194,14 +192,14 @@
 		C88C904323C2963D009F2517 /* GitHubFollowers */ = {
 			isa = PBXGroup;
 			children = (
+				C8EA45DC23D0DCEA00EF46B4 /* Utilities */,
 				C8EA45D923D0C7D900EF46B4 /* Managers */,
 				C8EA45D423D0B6CD00EF46B4 /* Models */,
-				C8EA45CF23D0789200EF46B4 /* Custom Views */,
 				C8EA45D023D078D500EF46B4 /* Extensions */,
+				C8EA45CF23D0789200EF46B4 /* Custom Views */,
 				C828902023DE2C7D00763929 /* Protocols */,
 				C8EA45CE23D0785D00EF46B4 /* Screens */,
 				C8EA45D323D0794500EF46B4 /* Support */,
-				C8EA45DC23D0DCEA00EF46B4 /* Utilities */,
 				C88C904D23C2963F009F2517 /* Assets.xcassets */,
 				C88C905223C2963F009F2517 /* Info.plist */,
 			);
@@ -219,9 +217,9 @@
 		C8EA45CE23D0785D00EF46B4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				C84142E123CCE5E300A6383B /* FavouritesListVC.swift */,
-				C8EA45C323CE5B3700EF46B4 /* FollowerListVC.swift */,
 				C88C904823C2963D009F2517 /* SearchVC.swift */,
+				C8EA45C323CE5B3700EF46B4 /* FollowerListVC.swift */,
+				C84142E123CCE5E300A6383B /* FavouritesListVC.swift */,
 				C828900A23D79B5900763929 /* UserInfoVC.swift */,
 			);
 			path = Screens;
@@ -247,7 +245,6 @@
 			children = (
 				C8EA45CB23CFD63500EF46B4 /* UIViewContoller+Ext.swift */,
 				C828901C23DD07CE00763929 /* Date+Ext.swift */,
-				C828901E23DD080B00763929 /* String+Ext.swift */,
 				C830B3BF24561A0900D31B8C /* UIView+Ext.swift */,
 				C86F76E62458822C005F1E13 /* UITableView+Ext.swift */,
 			);
@@ -394,7 +391,6 @@
 				C8EA45C823CFBB8800EF46B4 /* MLBodyLabel.swift in Sources */,
 				C86F76E72458822C005F1E13 /* UITableView+Ext.swift in Sources */,
 				C88C904723C2963D009F2517 /* SceneDelegate.swift in Sources */,
-				C828901F23DD080B00763929 /* String+Ext.swift in Sources */,
 				C84142E823CCFEF500A6383B /* MLTextField.swift in Sources */,
 				C8EA45DE23D0DD2200EF46B4 /* MLError.swift in Sources */,
 				C828901423DA2B0500763929 /* MLItemInfoView.swift in Sources */,

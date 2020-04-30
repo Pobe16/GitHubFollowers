@@ -13,6 +13,7 @@ class MLEmptyStateView: UIView {
     let messageLabel    = MLTitleLabel(textAlignment: .center, fontSize: 28)
     let logoImageView   = UIImageView()
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,10 +25,12 @@ class MLEmptyStateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     convenience init(message: String) {
         self.init(frame: .zero)
         messageLabel.text = message
     }
+    
     
     private func configure() {
         addSubviews(messageLabel, logoImageView)
@@ -35,11 +38,9 @@ class MLEmptyStateView: UIView {
         messageLabel.numberOfLines          = 3
         messageLabel.textColor              = .secondaryLabel
         
-        logoImageView.image = Images.emptyStateLogo
+        logoImageView.image                 = Images.emptyStateLogo
         
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         
         NSLayoutConstraint.activate([
             messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -130),

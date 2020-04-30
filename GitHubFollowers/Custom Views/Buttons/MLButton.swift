@@ -21,25 +21,19 @@ class MLButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - CUSTOM INITIALISER
     
     convenience init(withColor backgroundColor: UIColor, withTitle title: String) {
         self.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
     }
-    
-    
-    // MARK: - CUSTOM FUNCS
 
     
     private func configure() {
-        layer.cornerRadius          = 10
-        
+        layer.cornerRadius                          = 10
+        titleLabel?.font                            = UIFont.preferredFont(forTextStyle: .headline)
+        translatesAutoresizingMaskIntoConstraints   = false
         setTitleColor(.white, for: .normal)
-        
-        titleLabel?.font            = UIFont.preferredFont(forTextStyle: .headline)
-        translatesAutoresizingMaskIntoConstraints = false
         
     }
     
