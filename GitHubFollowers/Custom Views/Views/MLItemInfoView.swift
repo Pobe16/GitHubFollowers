@@ -12,8 +12,8 @@ enum ItemInfoType {
     case repos, gists, followers, following
 }
 
-
 class MLItemInfoView: UIView {
+    
     let symbolImageView         = UIImageView()
     let titleLabel              = MLTitleLabel(textAlignment: .left, fontSize: 14)
     let countLabel              = MLTitleLabel(textAlignment: .center, fontSize: 14)

@@ -10,16 +10,17 @@ import UIKit
 
 class MLAlertVC: UIViewController {
     
-    let containerView = MLAlertContainerView()
-    let titleLabel = MLTitleLabel(textAlignment: .center, fontSize: 20)
-    let messageLabel = MLBodyLabel(textAlignment: .center)
-    let actionButton = MLButton(withColor: .systemPink, withTitle: "OK")
+    let containerView           = MLAlertContainerView()
+    let titleLabel              = MLTitleLabel(textAlignment: .center, fontSize: 20)
+    let messageLabel            = MLBodyLabel(textAlignment: .center)
+    let actionButton            = MLButton(withColor: .systemPink, withTitle: "OK")
     
-    let padding: CGFloat = 20
+    let padding: CGFloat        = 20
     
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
+    
     
     init(title: String, message: String, buttonTitle: String){
         super.init(nibName: nil, bundle: nil)
@@ -30,6 +31,7 @@ class MLAlertVC: UIViewController {
         
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -37,9 +39,7 @@ class MLAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        
         
         configureContainerView()
         containerView.addSubviews(
@@ -80,7 +80,6 @@ class MLAlertVC: UIViewController {
     
     func configureActionButton() {
         actionButton.setTitle(buttonTitle ?? "OK", for: .normal)
-        
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([

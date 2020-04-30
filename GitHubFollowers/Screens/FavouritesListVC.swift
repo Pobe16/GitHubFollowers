@@ -66,21 +66,26 @@ class FavouritesListVC: MLDataLoadingVC {
             guard let self = self else { return }
             switch result{
             case .success(let favourites):
-                if favourites.isEmpty {
-                    self.tableView.isHidden = true
-                    self.showEmptyStateView(withMessage: "No Favourites?\nAdd one on the follower screen.", in: self.view)
-                } else {
-                    self.tableView.isHidden = false
-                    self.favourites = favourites
-                    DispatchQueue.main.async {
-                        self.removeEmptyStateView(in: self.view)
-                        self.tableView.reloadData()
-                        self.view.bringSubviewToFront(self.tableView)
-                    }
-                }
+                self.updateUI(with: favourites)
                 
             case .failure(let error):
                 self.presentMLAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+            }
+        }
+    }
+    
+    
+    func updateUI(with favourites: [Follower]) {
+        if favourites.isEmpty {
+            self.tableView.isHidden = true
+            self.showEmptyStateView(withMessage: "No Favourites?\nAdd one on the follower screen.", in: self.view)
+        } else {
+            self.tableView.isHidden = false
+            self.favourites = favourites
+            DispatchQueue.main.async {
+                self.removeEmptyStateView(in: self.view)
+                self.tableView.reloadData()
+                self.view.bringSubviewToFront(self.tableView)
             }
         }
     }

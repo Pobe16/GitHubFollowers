@@ -47,6 +47,7 @@ class UserInfoVC: UIViewController {
         
     }
     
+    
     func configureScrollView() {
         
         view.addSubview(scrollView)

@@ -34,7 +34,6 @@ class MLTitleLabel: UILabel {
         adjustsFontSizeToFitWidth                   = true
         minimumScaleFactor                          = 0.8
         lineBreakMode                               = .byTruncatingTail
-        
         translatesAutoresizingMaskIntoConstraints   = false
         adjustsFontForContentSizeCategory           = true
         

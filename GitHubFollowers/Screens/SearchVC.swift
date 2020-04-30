@@ -38,8 +38,8 @@ class SearchVC: UIViewController {
         
     }
     
-    // Always hide the navigation bar
     
+    // Always hide the navigation bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -53,6 +53,7 @@ class SearchVC: UIViewController {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
+    
     
     @objc func pushFollowerListVC() {
         guard isUsernameEntered else {
