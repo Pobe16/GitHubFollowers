@@ -10,7 +10,7 @@ import UIKit
 
 extension UITableView {
     
-    func reloadFataOnMainThread() {
+    func reloadDataOnMainThread() {
         DispatchQueue.main.async {
             self.reloadData()
         }
