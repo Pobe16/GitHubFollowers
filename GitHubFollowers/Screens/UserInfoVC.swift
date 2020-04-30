@@ -15,6 +15,9 @@ protocol FollowerListVCDelegate: class {
 
 class UserInfoVC: UIViewController {
     
+    let scrollView              = UIScrollView()
+    let contentForScrollView    = UIView()
+    
     let headerView              = UIView()
     let itemViewOne             = UIView()
     let itemViewTwo             = UIView()
@@ -29,6 +32,7 @@ class UserInfoVC: UIViewController {
         super.viewDidLoad()
         
         configureViewController()
+        configureScrollView()
         layoutUI()
         getUserInfo()
         
@@ -41,6 +45,20 @@ class UserInfoVC: UIViewController {
         let doneButton                      = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem   = doneButton
         
+    }
+    
+    func configureScrollView() {
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentForScrollView)
+        
+        scrollView.takeAllAvailableSpace(in: view)
+        contentForScrollView.takeAllAvailableSpace(in: scrollView)
+        
+        NSLayoutConstraint.activate([
+            contentForScrollView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentForScrollView.heightAnchor.constraint(equalToConstant: 600)
+        ])
     }
     
     
@@ -84,17 +102,17 @@ class UserInfoVC: UIViewController {
         itemViews.append(contentsOf: [headerView, itemViewOne, itemViewTwo, dateLabel])
         
         itemViews.forEach {
-            view.addSubview($0)
+            contentForScrollView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+                $0.leadingAnchor.constraint(equalTo: contentForScrollView.leadingAnchor, constant: padding),
+                $0.trailingAnchor.constraint(equalTo: contentForScrollView.trailingAnchor, constant: -padding)
             ])
         }
         
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.topAnchor.constraint(equalTo: contentForScrollView.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 180),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
